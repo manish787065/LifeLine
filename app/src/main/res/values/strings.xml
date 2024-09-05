@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">LifeLine</string>
+    <string name="title_activity_registration">RegistrationActivity</string>
+</resources>
