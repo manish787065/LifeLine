@@ -1,5 +1,6 @@
 package india.learn.lifeline
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -31,10 +32,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
+import india.learn.lifeline.home.HomeActivity
 import india.learn.lifeline.ui.theme.LifeLineTheme
 
 
@@ -47,13 +50,14 @@ class LoginActivity : ComponentActivity() {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     var phoneNumber by remember { mutableStateOf("") }
                     var password by remember { mutableStateOf("") }
-
+                    val context = LocalContext.current
                     LoginPage(
                         phoneNumber = phoneNumber,
                         onPhoneNumberChange = { phoneNumber = it },
                         password = password,
                         onPasswordChange = { password = it },
-                        onLoginClick = {
+                        onLoginClick = { val intent = Intent(context, HomeActivity::class.java)
+                            context.startActivity(intent)
 
                         },
                         onForgotPasswordClick = {

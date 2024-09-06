@@ -1,5 +1,6 @@
 package india.learn.lifeline.auth
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -28,8 +29,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import india.learn.lifeline.LoginActivity
 import india.learn.lifeline.ui.theme.LifeLineTheme
 
 class RegistrationActivity : ComponentActivity() {
@@ -40,14 +43,17 @@ class RegistrationActivity : ComponentActivity() {
             LifeLineTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     var selectedRole by remember { mutableStateOf("Select Role") }
-
+                    val context = LocalContext.current
                     MainPage(
                         selectedRole = selectedRole,
                         onRoleChange = { role -> selectedRole = role },
                         onLoginClick = {
+                            val intent = Intent(context, LoginActivity::class.java)
+                            context.startActivity(intent)
                             // Handle login button click
                         },
-                        onRegisterClick = {
+                        onRegisterClick = { val intent = Intent(context, LoginActivity::class.java)
+                            context.startActivity(intent)
                             // Handle register button click
                         }
                     )
